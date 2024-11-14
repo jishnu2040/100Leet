@@ -1,0 +1,14 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        open_expr = ['[', '{', '(']
+        brackt = {']': '[', '}': '{', ')': '('}
+        stack = []
+
+        for i in s:
+            if i in open_expr:
+                stack.append(i)
+            else:
+                if not stack or brackt[i] != stack.pop():
+                    return False
+
+        return len(stack) == 0
